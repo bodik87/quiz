@@ -34,7 +34,7 @@ function App() {
               questions={questions}
               question={question}
               onClickVariant={onClickVariant} />
-            <button className="open-modal-btn" onClick={handleOpen} >✨ Пiдказка</button>
+            <button className="open-modal-btn" onClick={handleOpen} >🎲 Пiдказка</button>
           </> :
           <Result correct={correct} questions={questions} />
         }

@@ -1,5 +1,5 @@
 import React from 'react'
-import AllRight from '../../src/assets/allRight.png'
+import AllRight from '../../src/assets/allRight.svg'
 
 export const Result = ({ questions, correct }) => {
   return (
