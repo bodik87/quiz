@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import { questions } from '../src/data'
-import './App.scss';
 import { Game } from './Game/Game';
+import { Modal } from './Modal/Modal';
 import { Result } from './Result/Result';
+import './App.scss';
 
 function App() {
+  const [open, setOpen] = useState(false)
+  const handleOpen = (e) => {
+    e.stopPropagation()
+    setOpen(!open)
+  }
+
   const [step, setStep] = useState(0)
   const [correct, setCorrect] = useState(0)
   const question = questions[step]
@@ -18,15 +25,27 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {step !== questions.length ?
-        <Game
-          step={step}
-          questions={questions}
-          question={question}
-          onClickVariant={onClickVariant} /> :
-        <Result correct={correct} questions={questions} />}
-    </div>
+    <>
+      <div className={`App ${open ? 'blured' : ''}`}>
+        {step !== questions.length ?
+          <>
+            <Game
+              step={step}
+              questions={questions}
+              question={question}
+              onClickVariant={onClickVariant} />
+            <button className="open-modal-btn" onClick={handleOpen} >✨ Пiдказка</button>
+          </> :
+          <Result correct={correct} questions={questions} />
+        }
+
+      </div>
+      <Modal
+        open={open}
+        handleOpen={handleOpen}>
+        {question?.variants[question.correct]}
+      </Modal>
+    </>
   );
 }
 
