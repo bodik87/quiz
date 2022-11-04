@@ -19,9 +19,7 @@ function App() {
   const onClickVariant = (index) => {
     console.log(step, index);
     setStep(step + 1)
-    if (index === question.correct) {
-      setCorrect(correct + 1)
-    }
+    if (index === question.correct) setCorrect(correct + 1)
   }
 
   return (
